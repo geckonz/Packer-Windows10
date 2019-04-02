@@ -3,7 +3,7 @@ New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowO
 
 # Set network to private
 $ifaceinfo = Get-NetConnectionProfile
-Set-NetConnectionProfile -InterfaceIndex $ifaceinfo.InterfaceIndex -NetworkCategory Private 
+Set-NetConnectionProfile -InterfaceIndex $ifaceinfo.InterfaceIndex -NetworkCategory Private
 
 # Set up WinRM and configure some things
 winrm quickconfig -q
