@@ -4,51 +4,68 @@ New-Item -Path $packerWindowsDir -ItemType Directory -Force
 # final shutdown command
 $shutdownCmd = @"
 netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" new action=block
-
-C:/windows/system32/sysprep/sysprep.exe /generalize /oobe /unattend:C:/Windows/packer/unattended.xml /quiet /shutdown
+ECHO "Starting Sysprep..."
+C:\windows\system32\sysprep\sysprep.exe /generalize /oobe /unattend:C:\Windows\packer\unattended.xml /quiet /shutdown
+ECHO "Sysprep complete."
 "@
 
 # unattend XML to run on first boot after sysprep
 $unattendedXML = @"
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
-    <settings pass="generalize">
-        <component name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <SkipRearm>1</SkipRearm>
-        </component>
-        <component name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <PersistAllDeviceInstalls>false</PersistAllDeviceInstalls>
-            <DoNotCleanUpNonPresentDevices>false</DoNotCleanUpNonPresentDevices>
-        </component>
-    </settings>
     <settings pass="oobeSystem">
-      <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <UserAccounts>
-          <AdministratorPassword>
-            <Value>1-PleaseChangeMe!</Value>
-            <PlainText>true</PlainText>
-          </AdministratorPassword>
-        </UserAccounts>
-        <OOBE>
-          <HideEULAPage>true</HideEULAPage>
-          <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
-          <ProtectYourPC>1</ProtectYourPC>
-          <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
-          <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
-          <HideLocalAccountScreen>true</HideLocalAccountScreen>
-        </OOBE>
-        <TimeZone>New Zealand Standard Time</TimeZone>
-      </component>
-      <component name="Microsoft-Windows-International-Core" processorArchitecture="wow64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <InputLocale>en-NZ</InputLocale>
-          <SystemLocale>en-NZ</SystemLocale>
-          <UILanguage>en-NZ</UILanguage>
-          <UILanguageFallback>en-US</UILanguageFallback>
-          <UserLocale>en-NZ</UserLocale>
-      </component>
+        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <InputLocale>0409:00000409</InputLocale>
+            <SystemLocale>en-NZ</SystemLocale>
+            <UILanguage>en-NZ</UILanguage>
+            <UILanguageFallback>en-US</UILanguageFallback>
+            <UserLocale>en-NZ</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <OOBE>
+                <VMModeOptimizations>
+                    <SkipAdministratorProfileRemoval>true</SkipAdministratorProfileRemoval>
+                </VMModeOptimizations>
+                <HideEULAPage>true</HideEULAPage>
+                <HideLocalAccountScreen>true</HideLocalAccountScreen>
+                <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+                <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+                <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+                <ProtectYourPC>1</ProtectYourPC>
+                <UnattendEnableRetailDemo>false</UnattendEnableRetailDemo>
+            </OOBE>
+            <UserAccounts>
+                <AdministratorPassword>
+                    <Value>UABhAHMAcwB3ADAAcgBkADEAMgAzAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==</Value>
+                    <PlainText>false</PlainText>
+                </AdministratorPassword>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Password>
+                            <Value>dgBhAGcAcgBhAG4AdABQAGEAcwBzAHcAbwByAGQA</Value>
+                            <PlainText>false</PlainText>
+                        </Password>
+                        <DisplayName>Vagrant</DisplayName>
+                        <Group>Administrators</Group>
+                        <Name>vagrant</Name>
+                    </LocalAccount>
+                </LocalAccounts>
+            </UserAccounts>
+            <TimeZone>New Zealand Standard Time</TimeZone>
+            <RegisteredOrganization>Clever Buggers Inc.</RegisteredOrganization>
+            <RegisteredOwner>Builder</RegisteredOwner>
+            <ShowPowerButtonOnStartScreen>true</ShowPowerButtonOnStartScreen>
+            <AutoLogon>
+                <Password>
+                    <Value>UABhAHMAcwB3ADAAcgBkADEAMgAzAFAAYQBzAHMAdwBvAHIAZAA=</Value>
+                    <PlainText>false</PlainText>
+                </Password>
+                <Enabled>true</Enabled>
+                <Username>Administrator</Username>
+            </AutoLogon>
+        </component>
     </settings>
-    <settings pass="specialize">
-    </settings>
+    <cpi:offlineImage cpi:source="wim://win-3ggv6lglt8v/public/software/windows10/sources/install.wim#Windows 10 Enterprise Evaluation" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
 </unattend>
 "@
 

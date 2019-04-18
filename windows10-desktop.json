@@ -96,12 +96,13 @@
 	      "scripts/no-expiration.ps1",
 				"scripts/compact.ps1"
 			],
-			"pause_before": "60s"
+			"pause_before": "180s"
 		},
 		{
 			"type":									"powershell",
 			"execute_command":			"powershell -executionpolicy bypass \"& { if (Test-Path variable:global:ProgressPreference){$ProgressPreference='SilentlyContinue'};. {{.Vars}}; &'{{.Path}}'; exit $LastExitCode }\"",
-			"script":								"scripts/save_shutdown_command.ps1"
+			"script":								"scripts/save_shutdown_command.ps1",
+			"pause_before": "60s"
 		}
 	],
 	"post-processors": [
