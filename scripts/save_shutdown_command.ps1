@@ -35,21 +35,10 @@ $unattendedXML = @"
                 <UnattendEnableRetailDemo>false</UnattendEnableRetailDemo>
             </OOBE>
             <UserAccounts>
-                <AdministratorPassword>
-                    <Value>UABhAHMAcwB3ADAAcgBkADEAMgAzAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==</Value>
-                    <PlainText>false</PlainText>
-                </AdministratorPassword>
-                <LocalAccounts>
-                    <LocalAccount wcm:action="add">
-                        <Password>
-                            <Value>dgBhAGcAcgBhAG4AdABQAGEAcwBzAHcAbwByAGQA</Value>
-                            <PlainText>false</PlainText>
-                        </Password>
-                        <DisplayName>Vagrant</DisplayName>
-                        <Group>Administrators</Group>
-                        <Name>vagrant</Name>
-                    </LocalAccount>
-                </LocalAccounts>
+              <AdministratorPassword>
+                  <Value>UABhAHMAcwB3ADAAcgBkADEAMgAzAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==</Value>
+                  <PlainText>false</PlainText>
+              </AdministratorPassword>
             </UserAccounts>
             <TimeZone>New Zealand Standard Time</TimeZone>
             <RegisteredOrganization>Clever Buggers Inc.</RegisteredOrganization>
