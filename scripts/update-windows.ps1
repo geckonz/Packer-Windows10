@@ -3,7 +3,7 @@
 #########################
 
 # See https://portal.msrc.microsoft.com/en-us/security-guidance/advisory/ADV990001
-$ssu_file_name = "windows10.0-kb4470788-x64_76f112f2b02b1716cdc0cab6c40f73764759cb0d.msu"
+$ssu_file_name = "windows10.0-kb4493510-x64_f692d391a4869d910c754895169dbd0d237a86da.msu"
 
 $cu_file_name =  "windows10.0-kb4490481-x64_a07dfdc8de3f0c2f590c950410a8a40522cd07dd.msu"
 

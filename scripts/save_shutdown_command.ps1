@@ -36,8 +36,8 @@ $unattendedXML = @"
             </OOBE>
             <UserAccounts>
               <AdministratorPassword>
-                  <Value>UABhAHMAcwB3ADAAcgBkADEAMgAzAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==</Value>
-                  <PlainText>false</PlainText>
+                  <Value>ChangeMePleas3!</Value>
+                  <PlainText>true</PlainText>
               </AdministratorPassword>
             </UserAccounts>
             <TimeZone>New Zealand Standard Time</TimeZone>
@@ -46,8 +46,8 @@ $unattendedXML = @"
             <ShowPowerButtonOnStartScreen>true</ShowPowerButtonOnStartScreen>
             <AutoLogon>
                 <Password>
-                    <Value>UABhAHMAcwB3ADAAcgBkADEAMgAzAFAAYQBzAHMAdwBvAHIAZAA=</Value>
-                    <PlainText>false</PlainText>
+                    <Value>ChangeMePleas3!</Value>
+                    <PlainText>true</PlainText>
                 </Password>
                 <Enabled>true</Enabled>
                 <Username>Administrator</Username>

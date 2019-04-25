@@ -72,14 +72,11 @@
 	],
 	"provisioners": [
 		{
-			"type":									"windows-restart",
-			"restart_timeout":			"30m"
-		},
-		{
 			"type":									"powershell",
 			"elevated_user":				"{{user `username`}}",
 			"elevated_password":		"{{user `password`}}",
-			"script":								"scripts/update-windows.ps1"
+			"script":								"scripts/update-windows.ps1",
+			"pause_before": "120s"
 		},
 		{
 			"type":									"windows-restart",
@@ -95,13 +92,13 @@
 	      "scripts/enable-uac.ps1",
 				"scripts/compact.ps1"
 			],
-			"pause_before": "180s"
+			"pause_before": "120s"
 		},
 		{
 			"type":									"powershell",
 			"execute_command":			"powershell -executionpolicy bypass \"& { if (Test-Path variable:global:ProgressPreference){$ProgressPreference='SilentlyContinue'};. {{.Vars}}; &'{{.Path}}'; exit $LastExitCode }\"",
 			"script":								"scripts/save_shutdown_command.ps1",
-			"pause_before": "180s"
+			"pause_before": "30s"
 		}
 	],
 	"post-processors": [
